@@ -20,3 +20,12 @@ function contact(event) {
         alert("The email service is temporarily unavailable. Please contact me directly at joanmart_castillo@hotmail.com");
     })
 }
+
+let isModalOpen = false;
+
+function toggleModal() {
+    let addend = "modal--open";
+    if(isModalOpen) document.body.classList.remove(addend);
+    else document.body.classList.add(addend);
+    isModalOpen = !isModalOpen;
+}

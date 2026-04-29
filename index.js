@@ -2,6 +2,11 @@
 // service_krx664a
 // 8QZLa1hE0kFTufO1O
 
+let isModalOpen = false;
+let isDark = false;
+let scaleFactor = 1/20;
+
+
 function contact(event) {
     event.preventDefault();
     const loading = document.querySelector(".modal__overlay--loading");
@@ -21,7 +26,25 @@ function contact(event) {
     })
 }
 
-let isModalOpen = false;
+
+function moveBackground(event) {
+    const shapes = document.querySelectorAll(".shape");
+    const x = event.clientX * scaleFactor;
+    const y = event.clientY * scaleFactor;
+    for(let i=0; i<shapes.length; i++) {
+        const modifier = (i % 2 !== 0) ? -1 : 1;
+        shapes[i].style.transform = `translate(${x * modifier}px, ${y * modifier}px)`;
+    }
+}
+
+
+function toggleContrast() {
+    let addend = "dark-theme";
+    if(isDark) document.body.classList.remove(addend);
+    else document.body.classList.add(addend);
+    isDark = !isDark;
+}
+
 
 function toggleModal() {
     let addend = "modal--open";
@@ -29,3 +52,4 @@ function toggleModal() {
     else document.body.classList.add(addend);
     isModalOpen = !isModalOpen;
 }
+
